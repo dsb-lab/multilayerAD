@@ -164,4 +164,7 @@ cython_debug/
 **/*.pptx
 /imagenes/
 /cytoscape_antiguo/
+/results_mi/
+/results_pearson/
 putty.txt
+/scripts/web/
