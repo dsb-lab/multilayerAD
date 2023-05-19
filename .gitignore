@@ -162,9 +162,15 @@ cython_debug/
 
 **/*.pdf
 **/*.pptx
+**/*.csv
+**/*.npy
+**/*.pickle
+/archivos_originales/
+/capas_def/
 /imagenes/
 /cytoscape_antiguo/
 /results_mi/
 /results_pearson/
 putty.txt
 /scripts/web/
+/scripts/temp/
