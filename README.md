@@ -28,44 +28,24 @@ Este repositorio contiene el código relacionado con el análisis y la simulaci�
 ### Análisis de Conectividad y Matrices de Densidad
 - `cross_analysis.ipynb`: Calcula las matrices de densidad (conectividad).
 
+## Pearson (Coeficiente de Correlación de Pearson)
+- `pearson_ind.py`: Calcula el coeficiente de correlación de Pearson para las redes individuales.
+- `pearson_ind_net.py`: Crea las redes individuales a partir de los archivos generados por `pearson_ind.py`.
+- `pearson_cross.py`: Calcula el coeficiente de correlación de Pearson para las redes cruzadas.
+- `pearson_cross_net.py`: Crea las redes cruzadas a partir de los archivos generados por `pearson_cross.py`.
+- `pearson_ind_diag.py`: Calcula el coeficiente de correlación de Pearson para las redes individuales de nl, mci y dementia.
+- `pearson_ind_net_diag.py`: Crea las redes individuales de nl, mci y dementia a partir de los archivos generados por `pearson_ind_diag.py`.
+- `pearson_cross_diag.py`: Calcula el coeficiente de correlación de Pearson para las redes cruzadas de nl, mci y dementia.
+- `pearson_cross_net_diag.py`: Crea las redes cruzadas de nl, mci y dementia a partir de los archivos generados por `pearson_cross_diag.py`.
+- `bignet_analysis_pearson.ipynb`: Realiza el análisis de las redes individuales y crea la red global y multicapa, también crea la red global para nl, mci y dementia.
 
-### PEARSON
-
-`pearson_ind.py` -> calcula el pearson de las redes individuales
-
-`pearson_ind_net.py` -> crea las redes individuales a partir de los files de `pearson_ind.py`
-
-`pearson_cross.py` -> calcula el pearson de las redes cross
-
-`pearson_cross_net.py` -> crea las redes cross a partir e los files de `pearson_cross.py`
-
-`pearson_ind_diag.py` -> calcula el pearson de las redes individuales para nl, mci, dementia
-
-`pearson_ind_net_diag.py` -> crea las redes individuales para nl, mci, dementia a partir de los files de `pearson_ind_diag.py`
-
-`pearson_cross_diag.py` -> calcula el pearson de las redes cross para nl, mci, dementia
-
-`pearson_cross_net_diag.py` -> crea las redes cross para nl, mci, dementia a partir e los files de `pearson_cross_diag.py`
-
-`bignet_analysis_pearson.ipynb` -> analisis de las redes individuales y crea la red global y multicapa, también crea la red global para nl, mci, dementia
-
-
-### SIMULACIONES BOOLEANAS
-
-`boolean_simulations.py` -> Hace las simulaciones Booleanas, se puede tunear el noise
-
-`boolean_simulations_diag.py` -> Hace las simulaciones Booleanas para nl, mci y dementia, se puede tunear el noise
-
-`cross_corr.py` -> Calcula el cross correlation coefficient (maximum value of the temporal cross correlation across all lag times)
-
-`cross_corr_diag.py` -> Calcula el cross correlation coefficient para nl, mci, dementia
-
-`noise_analysis.ipynb` -> Analiza el efecto del noise en el cross correlation coefficient (falta representar la std)
-
-`paths_cross_corr.py` -> Crea la network a partir del cross correlation coeficient y calcula los top shortest pathways
-
-`paths_cross_corr_diag.py` -> Crea la network a partir del cross correlation coeficient y calcula los top shortest pathways para nl, mci, dementia
-
-`permut_bool.py` -> Hace el negative control, permutando los edges de las redes y calculando las simulaciones booleanas y los top paths en cada permutation.
-
-`analysis_paths.ipynb` -> Análisis de los paths obtenidos en el análisis dinámico. En los negative controls: contador de las veces que aparecen los paths después de hacer las permutaciones
+## Simulaciones Booleanas
+- `boolean_simulations.py`: Realiza simulaciones booleanas con la opción de ajustar el nivel de ruido.
+- `boolean_simulations_diag.py`: Realiza simulaciones booleanas para nl, mci y dementia con la opción de ajustar el nivel de ruido.
+- `cross_corr.py`: Calcula el coeficiente de correlación cruzada (maximum value of the temporal cross correlation across all lag times).
+- `cross_corr_diag.py`: Calcula el coeficiente de correlación cruzada para nl, mci, dementia.
+- `noise_analysis.ipynb`: Analiza el efecto del ruido en el coeficiente de correlación cruzada (falta representar la desviación estándar).
+- `paths_cross_corr.py`: Crea la red a partir del coeficiente de correlación cruzada y calcula los mejores caminos más cortos (shortest paths).
+- `paths_cross_corr_diag.py`: Crea la red a partir del coeficiente de correlación cruzada y calcula los mejores caminos más cortos para nl, mci, dementia.
+- `permut_bool.py`: Realiza el control negativo, permutando las conexiones de las redes y calculando las simulaciones booleanas y los mejores caminos en cada permutación.
+- `analysis_paths.ipynb`: Análisis de los caminos obtenidos en el análisis dinámico. Para los controles negativos: contador de las veces que aparecen los caminos después de realizar las permutaciones.
