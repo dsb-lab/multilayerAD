@@ -28,7 +28,7 @@ Este repositorio contiene el código relacionado con el análisis y la simulaci�
 ### Análisis de Conectividad y Matrices de Densidad
 - `cross_analysis.ipynb`: Calcula las matrices de densidad (conectividad).
 
-## Pearson (Coeficiente de Correlación de Pearson)
+## Pearson
 - `pearson_ind.py`: Calcula el coeficiente de correlación de Pearson para las redes individuales.
 - `pearson_ind_net.py`: Crea las redes individuales a partir de los archivos generados por `pearson_ind.py`.
 - `pearson_cross.py`: Calcula el coeficiente de correlación de Pearson para las redes cruzadas.
@@ -49,3 +49,4 @@ Este repositorio contiene el código relacionado con el análisis y la simulaci�
 - `paths_cross_corr_diag.py`: Crea la red a partir del coeficiente de correlación cruzada y calcula los mejores caminos más cortos para nl, mci, dementia.
 - `permut_bool.py`: Realiza el control negativo, permutando las conexiones de las redes y calculando las simulaciones booleanas y los mejores caminos en cada permutación.
 - `analysis_paths.ipynb`: Análisis de los caminos obtenidos en el análisis dinámico. Para los controles negativos: contador de las veces que aparecen los caminos después de realizar las permutaciones.
+- `create_network_paths.ipynb`: A partir del CSV con los paths que han pasado el negative control crea las redes que represento en Cytoscape.
