@@ -1,4 +1,4 @@
-# Paper
+# Multilayer AD
 
 This repository contains the code related to the analysis and simulation of networks for our research paper.
 
