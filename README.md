@@ -50,3 +50,12 @@ This repository contains the code related to the analysis and simulation of netw
 - `permut_bool.py`: Performs negative control by permuting network connections and computing Boolean simulations and best paths for each permutation.
 - `analysis_paths.ipynb`: Analyzes the paths obtained in the dynamic analysis. For negative controls: counts the frequency of each path after permutations.
 - `create_network_paths.ipynb`: From the CSV file with paths that passed the negative control, builds the networks to be visualized in Cytoscape.
+
+
+## Installation
+1. Clone this repository
+2. Create a virtual environment (optional but recommended)
+3. Install the dependencies
+    ```bash
+    pip install -r requirements.txt
+    ```

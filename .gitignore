@@ -165,7 +165,7 @@ cython_debug/
 *.csv
 *.npy
 *.pickle
-*.txt
+putty.txt
 /primera_version/
 /archivos_originales/
 /capas_def/
