@@ -74,7 +74,7 @@ node_sort = input_nodes + node_dict['PHENOTYPE']
 
 in_signal = True # decide if there is a manual signal driving the input
 len_period = 20
-noise_prob = 0.2 # 0, 0.05, 0.1, 0.15, 0.2 según el paper de Keith
+noise_prob = 0.05 # 0, 0.05, 0.1, 0.15, 0.2
 
 # define the parameters
 reps = 100 # number of times to run the simulation with new initial conditions for activation state

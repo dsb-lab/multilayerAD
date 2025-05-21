@@ -172,6 +172,6 @@ for level1, level2 in combos:
         save_pickle(adj_file, mat[i])
         json.dump(G_json, open(net_file, 'w'))
             
-    print(adj_file) #printemos solo las cosas del weighted
+    print(adj_file)
     print(net_file)
     network_stats(G, df_joined)

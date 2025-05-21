@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
-import scipy
+import scipy.signal
 import os
 import re
 import time
@@ -36,7 +36,7 @@ input_nodes = node_dict['GENETIC'] + node_dict['MOLECULAR'] + node_dict['PET'] +
 node_sort = input_nodes + node_dict['PHENOTYPE']
 
 len_period = 20
-noise_prob = 0.2 # 0, 0.05, 0.1, 0.15, 0.2 según el paper de Keith
+noise_prob = 0 # 0, 0.05, 0.1, 0.15, 0.2
 
 since = time.time()
 for k, in_node in enumerate(input_nodes):

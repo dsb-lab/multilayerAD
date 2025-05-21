@@ -1,4 +1,5 @@
 import networkx as nx
+from networkx.algorithms import isomorphism
 import random
 import pickle
 import json
@@ -8,7 +9,7 @@ import collections
 import itertools
 import numpy as np
 import pandas as pd
-import scipy
+import scipy.signal
 from joblib import Parallel, delayed
 
 def load_pickle(file):
@@ -271,6 +272,7 @@ def BooleanSimulation(G, input_nodes, node_sort, targets, len_period=20, nreps=3
   
   path_dict = {}
   # Boolean simulation
+  print('Start boolean simulation')
   for i, in_node in enumerate(input_nodes):
     cross = np.ones((nreps, npts, npts))
     for rep in range(nreps):
@@ -301,8 +303,10 @@ def BooleanSimulation(G, input_nodes, node_sort, targets, len_period=20, nreps=3
         cross[rep][tupl[::-1]] = np.max(np.abs(scipy.signal.correlate(x, y)))
       cross[rep] /= np.max(cross[rep])
     cross_mean = pd.DataFrame(np.mean(cross, axis=0), index=node_sort, columns=node_sort)
+    print('Finished boolean simulation')
 
     # Shortest path
+    print('Start shortest path')
     adj_cross = adj.copy()
     adj_cross[adj_cross!=0] = 1
     adj_cross = adj_cross.loc[node_sort, node_sort]
@@ -319,6 +323,20 @@ def BooleanSimulation(G, input_nodes, node_sort, targets, len_period=20, nreps=3
   
   return path_dict
 
+def are_graphs_isomorphic(graph1, graph2):
+    # Pruning inicial
+    if graph1.number_of_nodes() != graph2.number_of_nodes() or \
+            graph1.number_of_edges() != graph2.number_of_edges():
+        return False
+
+    # Ordenar nodos por grado
+    nodes1 = sorted(graph1.nodes(), key=lambda x: graph1.degree(x))
+    nodes2 = sorted(graph2.nodes(), key=lambda x: graph2.degree(x))
+    mapping = {nodes1[i]: nodes2[i] for i in range(len(nodes1))}
+    graph1_reorder = nx.relabel_nodes(graph1, mapping)
+
+    vf2 = isomorphism.vf2userfunc.GraphMatcher(graph1_reorder, graph2)
+    return vf2.is_isomorphic()
 
 levels = ['GENETIC', 'MOLECULAR', 'PET', 'MRI', 'RISKFACTORS', 'PHENOTYPE']
 combos = list(itertools.combinations(levels, 2))
@@ -333,21 +351,28 @@ input_nodes = node_dict['GENETIC'] + node_dict['MOLECULAR'] + node_dict['PET'] +
 targets = node_dict['PHENOTYPE']
 node_sort = input_nodes + targets
 
-num_permutations = 2
+num_permutations = 1
 
 def parallel_permutation(permut):
+  print('Upload network')
   P = G.copy()
-  while nx.is_isomorphic(G, P): #si las redes son iguales se vuelve a permutar
+  print('Start permuting')
+  step = 0
+  while are_graphs_isomorphic(G, P): #si las redes son iguales se vuelve a permutar
+    print(f'{step:5d}', end='\r')
     P = PermutNetwork(P, levels, combos, node_dict)
+    step += 1
+  print('Finished permutation')
   P_json = nx.readwrite.json_graph.cytoscape.cytoscape_data(P)
-  json.dump(P_json, open(f'../results_pearson/negative_controls/network_permutedd{permut}.json', 'w'))
-  # json.dump(P_json, open('../results_pearson/negative_controls/network_permuted.json', 'w'))
-  # print('Network permuted')
+  # json.dump(P_json, open(f'../results_pearson/negative_controls/network_permuted{permut}.json', 'w'))
+  print('Network saved!')
   paths = BooleanSimulation(P, input_nodes, node_sort, targets)
-  save_pickle(f'../results_pearson/negative_controls/top_pathways_permutedd{permut}.pickle', paths)
-  # save_pickle('../results_pearson/negative_controls/top_pathways_permuted.pickle', paths)
+  # save_pickle(f'../results_pearson/negative_controls/top_pathways_permuted{permut}.pickle', paths)
+  print('Top paths saved!')
 
 since = time.time()
-Parallel(n_jobs=num_permutations)(delayed(parallel_permutation)(j) for j in range(num_permutations))
+# Parallel(n_jobs=num_permutations)(delayed(parallel_permutation)(j) for j in range(num_permutations))
+for j in range(num_permutations):
+  parallel_permutation(j)
 time_elapsed = time.time() - since
 print(f'Total time: {str(timedelta(seconds=time_elapsed))}')

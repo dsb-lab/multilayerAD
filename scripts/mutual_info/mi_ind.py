@@ -69,19 +69,19 @@ print("Computing the MI coefficient.")
 since = time.time()
 for level in levels:
     print(level)
-    df = pd.read_csv(f'{level}.csv')
+    df = pd.read_csv(f'../datasets/{level}.csv')
     df.set_index('RID', inplace=True)
     print('# subjects:  ', df.shape[0]) # rows
     print('# variables: ', df.shape[1]) # columns
     coef = coef_matrix_sklearn(df, bins=10) # creates a square matrix of coef scores with shape (# variables, # variables)
     coef_array = coef[np.triu_indices(coef.shape[0])] # MI[np.triu_indices(rows)]
-    file = f'{level}_mi_array.npy'
+    file = f'../results_mi/{level}_mi_array.npy'
     print(file)
     np.save(file, coef_array)
 
     coef = coef_perm_matrix(df, reps=1000, bins=10)
     coef_array = np.asarray([arr[np.triu_indices(arr.shape[0])] for arr in coef])
-    file = f'{level}_mi_perms.npy'
+    file = f'../results_mi/{level}_mi_perms.npy'
     print(file)
     np.save(file, coef_array)
 time_elapsed = time.time() - since
