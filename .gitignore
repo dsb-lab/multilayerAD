@@ -159,18 +159,18 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-
-**/*.pdf
-**/*.pptx
-**/*.csv
-**/*.npy
-**/*.pickle
+*.png
+*.pdf
+*.pptx
+*.csv
+*.npy
+*.pickle
+*.txt
+/primera_version/
 /archivos_originales/
 /capas_def/
-/imagenes/
 /cytoscape_antiguo/
 /results_mi/
 /results_pearson/
-putty.txt
 /scripts/web/
 /scripts/temp/
