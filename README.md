@@ -27,6 +27,8 @@ This repository contains the code related to the analysis and simulation of netw
 - `paths_analysis.ipynb`: Analyzes the shortest paths and generates plots.
 ### Connectivity and Density Matrices Analysis
 - `cross_analysis.ipynb`: Computes the density (connectivity) matrices.
+### FDG PET connections with nodes from other layers
+- `table_PET.ipynb`: Creates the table with the FDG PET connections with nodes from other layers and their MI.
 
 ## Pearson
 - `pearson_ind.py`: Computes the Pearson correlation coefficient for individual networks.
