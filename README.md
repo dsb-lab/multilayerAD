@@ -2,6 +2,13 @@
 
 This repository contains the code related to the analysis and simulation of networks for our research paper.
 
+_Important note on data access:_
+The raw data used in this study were obtained from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) database. To access the same dataset, researchers must apply for access through the ADNI data portal: <https://adni.loni.usc.edu/>
+
+Once you are granted access, you will be able to download the necessary files and reproduce the results using the code provided in this repository.
+
+## Description of the datasets
+- `description_datasets.ipynb`: Creates the tables in the SI with all the nodes, their description, and the number in the nodes labels.
 ## Node Dictionary Creation
 - `node_dict.py`: Creates the `node_dictionary.pickle` file, where the keys are the layers and the values are the nodes.
 
